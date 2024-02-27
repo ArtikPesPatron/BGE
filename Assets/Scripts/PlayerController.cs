@@ -27,19 +27,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        _characterController.Move(_moveVector * Time.fixedDeltaTime * speed);
-
         fallVelocity += gravity * Time.fixedDeltaTime;
-        _characterController.Move(Vector3.down * fallVelocity * Time.deltaTime);
-    }
 
-    void Update()
-    {
+        _characterController.Move(_moveVector * Time.fixedDeltaTime * speed);
+        _characterController.Move(Vector3.down * fallVelocity * Time.deltaTime);
+
         if (_characterController.isGrounded)
         {
             fallVelocity = 0;
         }
+    }
 
+    void Update()
+    {
         _moveVector = Vector3.zero;
 
         if (Input.GetKey(KeyCode.W))
