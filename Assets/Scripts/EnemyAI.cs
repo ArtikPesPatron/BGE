@@ -31,14 +31,21 @@ public class EnemyAI : MonoBehaviour
                 {
                     _playerVisible = true;
                 }
+                else
+                {
+                    _playerVisible = false;
+                }
             }
         }
     }
     private void PatrolUpdatePoint()
     {
-        if(_navMeshAgent.remainingDistance == 0 && _playerVisible == false)
+        if (_playerVisible == false)
         {
-            PickNewPatrolPoint();
+            if (_navMeshAgent.remainingDistance == 0)
+            {
+                PickNewPatrolPoint();
+            }
         }
     }
     private void PickNewPatrolPoint()
