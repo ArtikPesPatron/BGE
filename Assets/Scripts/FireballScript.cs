@@ -10,10 +10,10 @@ public class FireballScript : MonoBehaviour
 
     private void DamageEnemy(Collision collision)
     {
-        var enemyHealth = collision.gameObject.GetComponent<MobHP>();
-        if(enemyHealth != null)
+        var enemy = collision.gameObject.GetComponent<Enemy>();
+        if(enemy != null)
         {
-            enemyHealth.mobHP -= damage;
+            enemy.DealDamage(damage);
         }
     }
     private void DestroyGameObject()
@@ -27,7 +27,7 @@ public class FireballScript : MonoBehaviour
 
     void Start()
     {
-        
+
     }
     private void Update()
     {

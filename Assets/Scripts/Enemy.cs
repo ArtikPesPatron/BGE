@@ -3,24 +3,75 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     private NavMeshAgent _navMeshAgent;
+    private PlayerHealth _playerHealth;
+    private bool _playerVisible;
+    private int rnd;
 
     public List<Transform> patrolPoints;
+    public GameObject _visibilityText;
     public PlayerController player;
-    private bool _playerVisible;
+    public Animator animator;
     public float viewAngle;
-    public float damage = 30;
-    private PlayerHealth _playerHealth;
-
+    public float EnemyDamage1 = 20;
+    public float EnemyDamage2 = 10;
+    public float EnemyDamage3 = 50;
+    public float mobHP = 100;
+    public void Attack1()
+    {
+        _playerHealth.DealDamage(EnemyDamage1);
+    }
+    public void Attack2()
+    {
+        _playerHealth.DealDamage(EnemyDamage2);
+    }
+    private void Death()
+    {
+        animator.SetTrigger("Death");
+        GetComponent<Enemy>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+    }
+    private void VisibilityText()
+    {
+        if (_playerVisible == true)
+        {
+            _visibilityText.SetActive(true);
+        }
+        else
+        {
+            _visibilityText.SetActive(false);
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        var damageTaken = collision.gameObject.GetComponent<FireballScript>();
+        if(damageTaken != null)
+        {
+            _navMeshAgent.destination = player.transform.position;
+        }
+    }
+    public void DealDamage(float damage)
+    {
+        mobHP -= damage;
+        if(mobHP <= 0)
+        {
+            Death();
+        }
+        else
+        {
+            animator.SetTrigger("hit");
+        }
+    }
     private void AttackUpdate()
     {
         if (_playerVisible == true)
         {
             if(_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
-                _playerHealth.DealDamage(damage * Time.deltaTime);
+                animator.SetTrigger("Attack");
             }
         }
     }
@@ -84,6 +135,7 @@ public class EnemyAI : MonoBehaviour
     {
         PatrolUpdatePoint();
         VisibilityCheck();
+        VisibilityText();
         playerVisible();
         AttackUpdate();
     }
