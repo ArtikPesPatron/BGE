@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,10 +7,11 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private PlayerHealth _playerHealth;
     private bool _playerVisible;
-    private int rnd;
+    private float rnd;
 
     public List<Transform> patrolPoints;
     public GameObject _visibilityText;
+    public bool PlayerDeath = false;
     public PlayerController player;
     public Animator animator;
     public float viewAngle;
@@ -19,6 +19,14 @@ public class Enemy : MonoBehaviour
     public float EnemyDamage2 = 10;
     public float EnemyDamage3 = 50;
     public float mobHP = 100;
+
+    public void OnDeathPointUpdate()
+    {
+        if(PlayerDeath == true)
+        {
+            PickNewPatrolPoint();
+        }
+    }
     public void Attack1()
     {
         _playerHealth.DealDamage(EnemyDamage1);
@@ -62,7 +70,15 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger("hit");
+            rnd = Random.Range(1, 3);
+            if(rnd == 1)
+            {
+                animator.SetTrigger("hit");
+            }
+            else
+            {
+                animator.SetTrigger("hit2");
+            }
         }
     }
     private void AttackUpdate()
@@ -71,7 +87,10 @@ public class Enemy : MonoBehaviour
         {
             if(_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
-                animator.SetTrigger("Attack");
+                if(PlayerDeath == false) 
+                {
+                    animator.SetTrigger("Attack");
+                }
             }
         }
     }
@@ -123,8 +142,6 @@ public class Enemy : MonoBehaviour
     }
     // Methods
 
-
-    
     void Start()
     {
         ComponentLinks();
@@ -137,6 +154,7 @@ public class Enemy : MonoBehaviour
         VisibilityCheck();
         VisibilityText();
         playerVisible();
+        OnDeathPointUpdate();
         AttackUpdate();
     }
 }

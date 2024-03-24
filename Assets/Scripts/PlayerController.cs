@@ -1,24 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float sprint;
-
-    public float jumpForce;
+    private CharacterController _characterController;
+    private float fallVelocity = 0;
+    private Vector3 _moveVector;
+    private int runDir = 0;
 
     public float gravity = 9.8f;
-
-    private CharacterController _characterController;
-
-    private float fallVelocity = 0;
-
+    public Animator animator;
+    public float jumpForce;
+    public float sprint;
     public float speed;
 
-    private Vector3 _moveVector;
-
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -27,7 +21,6 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         fallVelocity += gravity * Time.fixedDeltaTime;
@@ -43,31 +36,50 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        MovementUpdate();
+        JumpUpdate();
+    }
+
+    private void MovementUpdate()
+    {
         _moveVector = Vector3.zero;
+        runDir = 0;
 
         if (Input.GetKey(KeyCode.W))
         {
             _moveVector += transform.forward;
+            runDir = 1;
         }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            _moveVector -= transform.right;
-        }
 
         if (Input.GetKey(KeyCode.S))
         {
             _moveVector -= transform.forward;
+            runDir = 2;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             _moveVector += transform.right;
+            runDir = 3;
         }
 
+        if (Input.GetKey(KeyCode.A))
+        {
+            _moveVector -= transform.right;
+            runDir = 4;
+            
+        }
+        animator.SetInteger("RunDirection", runDir);
+    }
+    private void JumpUpdate()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded)
         {
+            runDir = 0;
+            runDir = 5;
             fallVelocity = jumpForce * -1;
-        } 
+            animator.SetInteger("RunDirection", runDir);
+        }
     }
 }

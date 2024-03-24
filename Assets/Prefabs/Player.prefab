@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2643643541204439112}
   - component: {fileID: 965156310186730186}
+  - component: {fileID: 4117187239534958024}
   m_Layer: 5
   m_Name: GameOver Screen
   m_TagString: Untagged
@@ -51,6 +52,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e13d1c0edbd4b46b6265d66fa8e2e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &4117187239534958024
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81843516006158871}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e351590cadab2d6458d702761d84626e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3651546552065378041
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +208,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!95 &2280695528311921276
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913982229620771113}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb0ddb06c262f1b4d82c405f1d085c29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3920631040779599135
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,7 +239,7 @@ GameObject:
   - component: {fileID: 3640476725674516545}
   - component: {fileID: 4790473294955559969}
   m_Layer: 5
-  m_Name: PRTC
+  m_Name: PRTR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press R to continue
+  m_text: Press R to restart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -454,6 +493,36 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4099775707794882978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1787582888924637815}
+  m_Layer: 0
+  m_Name: GrenadeSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1787582888924637815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099775707794882978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7444714046217347574}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4219920988941124738
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +651,7 @@ GameObject:
   - component: {fileID: 4219920990478786305}
   - component: {fileID: 3331901947736869541}
   - component: {fileID: 7912660765491731294}
+  - component: {fileID: 3622072537467396917}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -620,10 +690,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13818c9cd5236a4da1e70186821c321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAngle: -30
-  maxAngle: 30
   CameraAxisTransform: {fileID: 4219920989761972968}
   sensitivity: 0.5
+  maxAngle: 30
+  minAngle: -30
   RotMult: 1000
 --- !u!114 &4219920990478786304
 MonoBehaviour:
@@ -637,9 +707,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1fb9e9d342345040a82e841f675d448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprint: 0
-  jumpForce: 10
   gravity: 9.8
+  animator: {fileID: 2280695528311921276}
+  jumpForce: 10
+  sprint: 0
   speed: 2.5
 --- !u!143 &4219920990478786305
 CharacterController:
@@ -686,10 +757,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f95b3c79bd7c546b76086840c9f594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
   valueRectTransform: {fileID: 6014031010532023947}
-  gameplayUI: {fileID: 3651546552065378041}
   gameOverScreen: {fileID: 81843516006158871}
+  gameplayUI: {fileID: 3651546552065378041}
+  animator: {fileID: 2280695528311921276}
+  HP: 100
+  enemy: {fileID: 0}
+--- !u!114 &3622072537467396917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4219920990478786332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09f6c5bc2c3869142bdba9b4a41c001c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenadePrefab: {fileID: 6227273117860560971, guid: 5e287f359423fc5478a3ed90107f5603,
+    type: 3}
+  grenadeSource: {fileID: 1787582888924637815}
 --- !u!1 &4609364990221021676
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.43137255}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.54901963}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -940,7 +1028,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.861, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1787582888924637815}
   m_Father: {fileID: 4219920990478786307}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -956,9 +1045,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 994a2d18dc5446446a35f421cb3e95f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetInSkyDistance: 35
   targetPoint: {fileID: 5685746734513468154}
   cameraLink: {fileID: 4219920988941124736}
-  targetInSkyDistance: 35
 --- !u!1 &7117907534253263004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,6 +1273,12 @@ PrefabInstance:
 --- !u!4 &4402992893389476755 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8cfbf318f61303f4a8b630281898308d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4219920989404918904}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3913982229620771113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cfbf318f61303f4a8b630281898308d,
     type: 3}
   m_PrefabInstance: {fileID: 4219920989404918904}
   m_PrefabAsset: {fileID: 0}

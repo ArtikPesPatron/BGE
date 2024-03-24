@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FireballScript : MonoBehaviour
 {
-    public float Speed;
-    public float lifetime;
     public float damage = 20;
+    public float lifetime;
+    public float Speed;
 
     private void DamageEnemy(Collision collision)
     {
@@ -25,22 +23,17 @@ public class FireballScript : MonoBehaviour
         transform.position += transform.forward * Speed * Time.fixedDeltaTime;
     }
 
-    void Start()
-    {
-
-    }
-    private void Update()
-    {
-        Invoke("DestroyGameObject", lifetime);
-    }
-
-    void FixedUpdate()
-    {
-        GoForward();
-    }
     private void OnCollisionEnter(Collision collision)
     {
         DamageEnemy(collision);
         DestroyGameObject();
+    }
+    void FixedUpdate()
+    {
+        GoForward();
+    }
+    private void Update()
+    {
+        Invoke("DestroyGameObject", lifetime);
     }
 }

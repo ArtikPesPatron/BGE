@@ -1,19 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FireballSource : MonoBehaviour
 {
+    public float targetInSkyDistance;
     public Transform targetPoint;
     public Camera cameraLink;
-    public float targetInSkyDistance;
-    void Start()
+
+    void Update()
     {
-        
+        FireballSourceUpdate();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FireballSourceUpdate()
     {
         var ray = cameraLink.ViewportPointToRay(new Vector3(0.5f, 0.6f, 0));
 
