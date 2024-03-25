@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    private PlayerProgress _playerExp;
     private NavMeshAgent _navMeshAgent;
     private PlayerHealth _playerHealth;
     private bool _playerVisible;
@@ -13,12 +14,13 @@ public class Enemy : MonoBehaviour
     public GameObject _visibilityText;
     public bool PlayerDeath = false;
     public PlayerController player;
-    public Animator animator;
-    public float viewAngle;
     public float EnemyDamage1 = 20;
     public float EnemyDamage2 = 10;
     public float EnemyDamage3 = 50;
     public float mobHP = 100;
+    public float ExpAdd = 50;
+    public Animator animator;
+    public float viewAngle;
 
     public void OnDeathPointUpdate()
     {
@@ -37,10 +39,11 @@ public class Enemy : MonoBehaviour
     }
     private void Death()
     {
-        animator.SetTrigger("Death");
         GetComponent<Enemy>().enabled = false;
-        GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
+        animator.SetTrigger("Death");
+        _playerExp.AddExperience(ExpAdd);
+        GetComponent<NavMeshAgent>().enabled = false;
     }
     private void VisibilityText()
     {
@@ -139,6 +142,7 @@ public class Enemy : MonoBehaviour
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _playerHealth = player.GetComponent<PlayerHealth>();
+        _playerExp = player.GetComponent<PlayerProgress>();
     }
     // Methods
 
