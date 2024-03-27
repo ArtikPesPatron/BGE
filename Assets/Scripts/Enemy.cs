@@ -8,11 +8,10 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private PlayerHealth _playerHealth;
     private bool _playerVisible;
-    private float rnd;
+    private float _rnd;
 
     public List<Transform> patrolPoints;
     public GameObject _visibilityText;
-    public bool PlayerDeath = false;
     public PlayerController player;
     public float EnemyDamage1 = 20;
     public float EnemyDamage2 = 10;
@@ -21,14 +20,6 @@ public class Enemy : MonoBehaviour
     public float ExpAdd = 50;
     public Animator animator;
     public float viewAngle;
-
-    public void OnDeathPointUpdate()
-    {
-        if(PlayerDeath == true)
-        {
-            PickNewPatrolPoint();
-        }
-    }
     public void Attack1()
     {
         _playerHealth.DealDamage(EnemyDamage1);
@@ -44,17 +35,6 @@ public class Enemy : MonoBehaviour
         animator.SetTrigger("Death");
         _playerExp.AddExperience(ExpAdd);
         GetComponent<NavMeshAgent>().enabled = false;
-    }
-    private void VisibilityText()
-    {
-        if (_playerVisible == true)
-        {
-            _visibilityText.SetActive(true);
-        }
-        else
-        {
-            _visibilityText.SetActive(false);
-        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -73,8 +53,8 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            rnd = Random.Range(1, 3);
-            if(rnd == 1)
+            _rnd = Random.Range(1, 3);
+            if(_rnd == 1)
             {
                 animator.SetTrigger("hit");
             }
@@ -90,10 +70,7 @@ public class Enemy : MonoBehaviour
         {
             if(_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance)
             {
-                if(PlayerDeath == false) 
-                {
-                    animator.SetTrigger("Attack");
-                }
+                animator.SetTrigger("Attack");
             }
         }
     }
@@ -158,7 +135,6 @@ public class Enemy : MonoBehaviour
         VisibilityCheck();
         VisibilityText();
         playerVisible();
-        OnDeathPointUpdate();
         AttackUpdate();
     }
 }

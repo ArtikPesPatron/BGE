@@ -3,9 +3,9 @@
 public class PlayerController : MonoBehaviour
 {
     private CharacterController _characterController;
-    private float fallVelocity = 0;
+    private float _fallVelocity = 0;
     private Vector3 _moveVector;
-    private int runDir = 0;
+    private int _runDir = 0;
 
     public float gravity = 9.8f;
     public Animator animator;
@@ -23,14 +23,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        fallVelocity += gravity * Time.fixedDeltaTime;
+        _fallVelocity += gravity * Time.fixedDeltaTime;
 
         _characterController.Move(_moveVector * Time.fixedDeltaTime * speed);
-        _characterController.Move(Vector3.down * fallVelocity * Time.deltaTime);
+        _characterController.Move(Vector3.down * _fallVelocity * Time.deltaTime);
 
         if (_characterController.isGrounded)
         {
-            fallVelocity = 0;
+            _fallVelocity = 0;
         }
     }
 
@@ -43,43 +43,43 @@ public class PlayerController : MonoBehaviour
     private void MovementUpdate()
     {
         _moveVector = Vector3.zero;
-        runDir = 0;
+        _runDir = 0;
 
         if (Input.GetKey(KeyCode.W))
         {
             _moveVector += transform.forward;
-            runDir = 1;
+            _runDir = 1;
         }
 
 
         if (Input.GetKey(KeyCode.S))
         {
             _moveVector -= transform.forward;
-            runDir = 2;
+            _runDir = 2;
         }
 
         if (Input.GetKey(KeyCode.D))
         {
             _moveVector += transform.right;
-            runDir = 3;
+            _runDir = 3;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             _moveVector -= transform.right;
-            runDir = 4;
+            _runDir = 4;
             
         }
-        animator.SetInteger("RunDirection", runDir);
+        animator.SetInteger("RunDirection", _runDir);
     }
     private void JumpUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded)
         {
-            runDir = 0;
-            runDir = 5;
-            fallVelocity = jumpForce * -1;
-            animator.SetInteger("RunDirection", runDir);
+            _runDir = 0;
+            _runDir = 5;
+            _fallVelocity = jumpForce * -1;
+            animator.SetInteger("RunDirection", _runDir);
         }
     }
 }

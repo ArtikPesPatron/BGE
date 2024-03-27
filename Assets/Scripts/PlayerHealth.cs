@@ -2,8 +2,8 @@
 
 public class PlayerHealth : MonoBehaviour
 {
-    private float maxHP;
-    private float rnd;
+    private float _maxHP;
+    private float _rnd;
 
     public RectTransform valueRectTransform;
     public GameObject gameOverScreen;
@@ -15,22 +15,22 @@ public class PlayerHealth : MonoBehaviour
     public void AddHealth(float amount)
     {
         HP += amount;
-        HP = Mathf.Clamp(HP, 0, maxHP);
+        HP = Mathf.Clamp(HP, 0, _maxHP);
         DrawHealthBar();
 
     }
     private void RandomValue()
     {
-        rnd = Random.Range(1, 3);
+        _rnd = Random.Range(1, 3);
     }
     private void DrawHealthBar()
     {
-        valueRectTransform.anchorMax = new Vector2(HP / maxHP, 1);
+        valueRectTransform.anchorMax = new Vector2(HP / _maxHP, 1);
     }
 
     private void PlayerDeath()
     {
-        if(rnd == 1)
+        if(_rnd == 1)
         {
             animator.SetTrigger("Death1");
         }
@@ -51,14 +51,13 @@ public class PlayerHealth : MonoBehaviour
         if (HP <= 0)
         {
             PlayerDeath();
-            enemy.GetComponent<Enemy>().PlayerDeath = true;
         }
 
         DrawHealthBar();
     }
     void Start()
     {
-        maxHP = HP;
+        _maxHP = HP;
         DrawHealthBar();
     }
 
