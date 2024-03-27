@@ -6,7 +6,7 @@ public class PlayerProgress : MonoBehaviour
 {
     private float _expTargetValue = 100;
     private float _expCurrentValue = 0;
-    private int _levelValue = 3;
+    private int _levelValue = 1;
 
     public List<PlayerProgressLevel> levels;
     public RectTransform ExpTransform;
