@@ -1071,7 +1071,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2341a3b5dd2352748b757a748217194d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoints: []
+  patrolPoints:
+  - {fileID: 830874684}
+  - {fileID: 1803301657}
+  - {fileID: 719995133}
+  - {fileID: 1798886837}
+  - {fileID: 1701335063}
+  - {fileID: 302219919}
   player: {fileID: 157874883}
   maxEnemyOnLevel: 5
   TimePerSpawn: 2
