@@ -19,6 +19,10 @@ public class Enemy : MonoBehaviour
     public float ExpAdd = 50;
     public Animator animator;
     public float viewAngle;
+    public bool IsAlive()
+    {
+        return mobHP > 0;
+    }
     public void Attack1()
     {
         _playerHealth.DealDamage(EnemyDamage1);

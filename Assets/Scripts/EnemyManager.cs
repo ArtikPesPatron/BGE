@@ -14,6 +14,31 @@ public class EnemyManager : MonoBehaviour
     public float TimePerSpawn = 2;
     public Enemy enemyPrefab;
 
+    private void EnemySpawn()
+    {
+        for(var i = 0; i<_enemies.Count; i++)
+        {
+            if (_enemies[i].IsAlive()) continue;
+            _enemies.RemoveAt(i);
+            i--;
+        }
+
+        if (_enemies.Count >= maxEnemyOnLevel)
+        {
+            return;
+        }
+        else
+        {
+            if (Time.time - _lastSpawn < TimePerSpawn)
+            {
+                return;
+            }
+            else
+            {
+                CreateEnemy();
+            }
+        }
+    }
     private void CreateEnemy()
     {
         var enemy = Instantiate(enemyPrefab);
@@ -32,20 +57,6 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
-        if(_enemies.Count >= maxEnemyOnLevel)
-        {
-            return;
-        }
-        else
-        {
-            if(Time.time - _lastSpawn < TimePerSpawn)
-            {
-                return;
-            }
-            else
-            {
-                CreateEnemy();
-            }
-        }
+        EnemySpawn();
     }
 }
