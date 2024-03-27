@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
     private float _rnd;
 
     public List<Transform> patrolPoints;
-    public GameObject _visibilityText;
     public PlayerController player;
     public float EnemyDamage1 = 20;
     public float EnemyDamage2 = 10;
@@ -133,7 +132,6 @@ public class Enemy : MonoBehaviour
     {
         PatrolUpdatePoint();
         VisibilityCheck();
-        VisibilityText();
         playerVisible();
         AttackUpdate();
     }
